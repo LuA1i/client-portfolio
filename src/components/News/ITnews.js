@@ -7,13 +7,13 @@ const ITnews = () => {
   const [error, setError] = useState(null)
 
   const fetchITnews = async () => {
-    const API_KEY = process.env.API_NEWS
     try {
+      // const API_KEY = process.env.REACT_APP_API_NEWS
       setLoading(true)
       setError(null)
 
       const response = await fetch(
-        `https://newsapi.org/v2/everything?q=technology&apiKey=${API_KEY}`
+        `https://newsapi.org/v2/everything?q=technology&apiKey=4c162b17dfa5452191214ec2c452f2c0`
       )
 
       if (!response.ok) {
@@ -21,7 +21,6 @@ const ITnews = () => {
       }
 
       const data = await response.json()
-      // Only take the first 4 articles
       setNews((data.articles || []).slice(0, 4))
     } catch (error) {
       console.error('Error fetching IT news:', error)
@@ -38,7 +37,9 @@ const ITnews = () => {
   if (loading) {
     return (
       <div id="projects" className="mx-auto px-10 pt-28 mt-52 pb-48 text-white">
-        <h2 className="text-4xl text-[#00b4d8] font-bold">Latest IT News</h2>
+        <h2 className="text-4xl text-[#00b4d8] justify-start font-bold">
+          Latest IT News
+        </h2>
         <div className="flex justify-center pt-10">
           <div className="text-white">Loading news...</div>
         </div>
@@ -49,7 +50,9 @@ const ITnews = () => {
   if (error) {
     return (
       <div id="projects" className="mx-auto px-10 pt-28 mt-52 pb-48 text-white">
-        <h2 className="text-4xl text-[#00b4d8] font-bold">Latest IT News</h2>
+        <h2 className="text-4xl text-[#00b4d8] font-bold text-left">
+          Latest IT News
+        </h2>
         <div className="flex justify-center pt-10">
           <div className="text-red-400">Error: {error}</div>
         </div>
@@ -59,7 +62,7 @@ const ITnews = () => {
 
   return (
     <div id="projects" className="mx-auto px-10 pt-28 mt-52 pb-48 text-white">
-      <h2 className="text-4xl text-[#00b4d8] font-bold text-center mb-12">
+      <h2 className="text-4xl text-[#00b4d8] font-bold text-left mb-12">
         Latest IT News
       </h2>
 
