@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
-import Projects from './components/Projects/Projects'
+import ITnews from './components/News/ITnews'
 import About from './components/About/About'
 import Contact from './components/Contact/Contact'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
@@ -11,7 +11,7 @@ function App() {
       <Navbar />
       <Hero id="hero" />
       <About id="about" />
-      <Projects id="projects" />
+      <ITnews id="itNews" />
       <Contact />
       <div>
         <hr className="mx-10 mt-10 border-[#00b4d8]" />
