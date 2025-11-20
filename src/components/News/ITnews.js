@@ -7,6 +7,7 @@ const ITnews = () => {
   const [error, setError] = useState(null)
 
   const fetchITnews = async () => {
+      const API_KEY = `4c162b17dfa5452191214ec2c452f2c0`
     try {
       setLoading(true)
       setError(null)
