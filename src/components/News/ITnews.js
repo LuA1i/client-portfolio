@@ -8,12 +8,12 @@ const ITnews = () => {
 
   const fetchITnews = async () => {
     try {
-      // const API_KEY = process.env.REACT_APP_API_NEWS
+      const API_KEY = `4c162b17dfa5452191214ec2c452f2c0`
       setLoading(true)
       setError(null)
 
       const response = await fetch(
-        `https://newsapi.org/v2/everything?q=technology&apiKey=4c162b17dfa5452191214ec2c452f2c0`
+        `https://newsapi.org/v2/everything?q=technology&apiKey=${API_KEY}`
       )
 
       if (!response.ok) {
