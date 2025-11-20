@@ -14,12 +14,7 @@ const About = () => {
       <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-12">
         <div className="w-full lg:w-1/2 flex flex-col items-start text-left">
           <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
-            There's ongoing pressure on NHS teams to deliver safe, efficient
-            care and patient waiting list data needs to be accurate and
-            reliable. Our models <span className="text-[#00b4d8]">LUNA</span>/
-            <span className="text-[#00b4d8]">ROVA</span> gives NHS teams the
-            tools to improve their data, reducing the risk, improving safety and
-            helping them manage data reducing backlogs.
+            To deliver safe, efficient care and reduce backlogs, NHS teams need accurate waiting list data. <span className='text-[#00b4d8]'>LUNA</span>/<span className='text-[#00b4d8]'>ROVA</span> provides the tools to improve data quality, which reduces risk and enhances patient safety. With a median wait of <span className='text-[#00b4d8]'>13.4 weeks</span> for those wating for treatments and <span className='text-[#00b4d8]'>2.8 million</span> wating over <span className='text-[#00b4d8]'>18 weeks</span>, by combining our expertise we provide you complete oversight of patient oversight and boost productivity.
           </p>
         </div>
 
