@@ -9,15 +9,15 @@ const ITnews = () => {
 
   useEffect(() => {
     const fetchNews = async () => {
-      const API_KEY = `4c162b17dfa5452191214ec2c452f2c0`
+      const API_KEY = `890144b6acf7a8851357a3528b81acf5`
       
       try {
         setLoading(true)
         setError(null)
         const response = await axios.get(
-          `https://newsapi.org/v2/everything?q=technology&apiKey=${API_KEY}`
+          `https://gnews.io/api/v4/top-headlines?category=health&lang=en&max=4&apikey=${API_KEY}`
         )
-        setNews(response.data.articles.slice(0, 4))
+        setNews(response.data.articles)
       } catch (error) {
         console.error('Error fetching IT news:', error)
         setError('Failed to fetch news articles')
@@ -68,9 +68,10 @@ const ITnews = () => {
               key={index}
               className="bg-none rounded-lg p-4 hover:bg-[#00b4d8] transition-all duration-300 hover:scale-105 h-full flex flex-col"
             >
-              {article.urlToImage && (
+              {/* Changed from article.urlToImage to article.image */}
+              {article.image && (
                 <img
-                  src={article.urlToImage}
+                  src={article.image}
                   alt={article.title}
                   className="w-full h-40 object-cover rounded-md mb-4"
                   onError={(e) => {
