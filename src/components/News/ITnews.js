@@ -7,13 +7,13 @@ const ITnews = () => {
   const [error, setError] = useState(null)
 
   const fetchITnews = async () => {
-      const API_KEY = `4c162b17dfa5452191214ec2c452f2c0`
+    const API_KEY = `890144b6acf7a8851357a3528b81acf5`
     try {
       setLoading(true)
       setError(null)
 
       const response = await fetch(
-        `http://newsapi.org/v2/everything?q=technology&apiKey=${API_KEY}`
+        `https://gnews.io/api/v4/top-headlines?category=technology&token=${API_KEY}&lang=en&max=4`
       )
 
       if (!response.ok) {
@@ -21,7 +21,8 @@ const ITnews = () => {
       }
 
       const data = await response.json()
-      setNews((data.articles || []).slice(0, 4))
+      console.log('GNews API Response:', data) // Debug log
+      setNews(data.articles || [])
     } catch (error) {
       console.error('Error fetching IT news:', error)
       setError(error.message)
@@ -73,9 +74,9 @@ const ITnews = () => {
               key={index}
               className="bg-none rounded-lg p-4 hover:bg-[#00b4d8] transition-all duration-300 hover:scale-105 h-full flex flex-col"
             >
-              {article.urlToImage && (
+              {article.image && (
                 <img
-                  src={article.urlToImage}
+                  src={article.image}
                   alt={article.title}
                   className="w-full h-40 object-cover rounded-md mb-4"
                   onError={(e) => {
