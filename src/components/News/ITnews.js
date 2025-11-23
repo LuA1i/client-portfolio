@@ -1,38 +1,32 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const ITnews = () => {
   const [news, setNews] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const fetchITnews = async () => {
-    const API_KEY = `890144b6acf7a8851357a3528b81acf5`
-    try {
-      setLoading(true)
-      setError(null)
-
-      const response = await fetch(
-        `https://gnews.io/api/v4/top-headlines?category=technology&token=${API_KEY}&lang=en&max=4`
-      )
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-
-      const data = await response.json()
-      console.log('GNews API Response:', data) // Debug log
-      setNews(data.articles || [])
-    } catch (error) {
-      console.error('Error fetching IT news:', error)
-      setError(error.message)
-    } finally {
-      setLoading(false)
-    }
-  }
-
   useEffect(() => {
-    fetchITnews()
+    const fetchNews = async () => {
+      const API_KEY = `4c162b17dfa5452191214ec2c452f2c0`
+      
+      try {
+        setLoading(true)
+        setError(null)
+        const response = await axios.get(
+          `https://newsapi.org/v2/everything?q=technology&apiKey=${API_KEY}`
+        )
+        setNews(response.data.articles.slice(0, 4))
+      } catch (error) {
+        console.error('Error fetching IT news:', error)
+        setError('Failed to fetch news articles')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchNews()
   }, [])
 
   if (loading) {
@@ -74,9 +68,9 @@ const ITnews = () => {
               key={index}
               className="bg-none rounded-lg p-4 hover:bg-[#00b4d8] transition-all duration-300 hover:scale-105 h-full flex flex-col"
             >
-              {article.image && (
+              {article.urlToImage && (
                 <img
-                  src={article.image}
+                  src={article.urlToImage}
                   alt={article.title}
                   className="w-full h-40 object-cover rounded-md mb-4"
                   onError={(e) => {
