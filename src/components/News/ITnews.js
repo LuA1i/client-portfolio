@@ -9,7 +9,7 @@ const ITnews = () => {
   useEffect(() => {
     const fetchITnews = async () => {
       const API_KEY = '890144b6acf7a8851357a3528b81acf5';
-      const url = `https://gnews.io/api/v4/top-headlines?category=technology&token=${API_KEY}&lang=en&max=4`;
+      const url = `https://gnews.io/api/v4/top-headlines?category=health&token=${API_KEY}&lang=en&max=4`;
       
       try {
         // FAST FIX - using corsproxy.io
