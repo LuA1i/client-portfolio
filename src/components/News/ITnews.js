@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 
 const ITnews = () => {
   const [news, setNews] = useState([])
@@ -8,26 +7,27 @@ const ITnews = () => {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    const fetchNews = async () => {
-      const API_KEY = `890144b6acf7a8851357a3528b81acf5`
+    const fetchITnews = async () => {
+      const API_KEY = '890144b6acf7a8851357a3528b81acf5';
+      const url = `https://gnews.io/api/v4/top-headlines?category=technology&token=${API_KEY}&lang=en&max=4`;
       
       try {
-        setLoading(true)
-        setError(null)
-        const response = await axios.get(
-          `https://gnews.io/api/v4/top-headlines?category=health&lang=en&max=4&apikey=${API_KEY}`
-        )
-        setNews(response.data.articles)
-      } catch (error) {
-        console.error('Error fetching IT news:', error)
-        setError('Failed to fetch news articles')
+        // FAST FIX - using corsproxy.io
+        const response = await fetch(`https://corsproxy.io/?${encodeURIComponent(url)}`);
+        
+        if (!response.ok) throw new Error('Failed to fetch');
+        
+        const data = await response.json();
+        setNews(data.articles || []);
+      } catch (err) {
+        setError(err.message);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchNews()
-  }, [])
+    fetchITnews();
+  }, []);
 
   if (loading) {
     return (
@@ -68,7 +68,6 @@ const ITnews = () => {
               key={index}
               className="bg-none rounded-lg p-4 hover:bg-[#00b4d8] transition-all duration-300 hover:scale-105 h-full flex flex-col"
             >
-              {/* Changed from article.urlToImage to article.image */}
               {article.image && (
                 <img
                   src={article.image}
